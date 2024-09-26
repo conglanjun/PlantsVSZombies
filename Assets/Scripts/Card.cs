@@ -18,8 +18,13 @@ public class Card : MonoBehaviour
     public GameObject cardGray;
     public Image cardMask;
 
-    public float cdTime = 2;
-    public float cdTimer = 0;
+    [SerializeField]
+    private float cdTime = 2;
+    private float cdTimer = 0;
+
+    [SerializeField]
+    private int needSunPoint = 50;
+
     // Update is called once per frame
     void Update()
     {
@@ -29,7 +34,7 @@ public class Card : MonoBehaviour
                 CoolingUpdate();
                 break;
             case CardState.WaitingSun:
-                WaitingSun();
+                WaitingSunUpdate();
                 break;
             case CardState.Ready:
                 ReadyUpdate();
@@ -49,9 +54,12 @@ public class Card : MonoBehaviour
         }
     }
 
-    void WaitingSun()
+    void WaitingSunUpdate()
     {
-
+        if (SunManager.Instance.SunPoint >= needSunPoint)
+        {
+            TransitionToReady();
+        }
     }
 
     void ReadyUpdate()
@@ -64,6 +72,14 @@ public class Card : MonoBehaviour
         cardState = CardState.WaitingSun;
         cardLight.SetActive(false);
         cardGray.SetActive(true);
+        cardMask.gameObject.SetActive(false);
+    }
+
+    void TransitionToReady()
+    {
+        cardState = CardState.Ready;
+        cardLight.SetActive(true);
+        cardGray.SetActive(false);
         cardMask.gameObject.SetActive(false);
     }
 }
