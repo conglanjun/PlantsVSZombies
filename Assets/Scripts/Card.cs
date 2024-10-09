@@ -99,6 +99,9 @@ public class Card : MonoBehaviour
     public void onClick()
     {
         if (SunManager.Instance.SunPoint < needSunPoint) return;
+
+        SunManager.Instance.SubSun(needSunPoint);
+
         TransitionToCooling();
     }
 }
