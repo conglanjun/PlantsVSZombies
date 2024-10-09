@@ -64,6 +64,10 @@ public class Card : MonoBehaviour
 
     void ReadyUpdate()
     {
+        if (SunManager.Instance.SunPoint < needSunPoint)
+        {
+            TransitionToWaitingSun();
+        }
 
     }
 
@@ -81,6 +85,21 @@ public class Card : MonoBehaviour
         cardLight.SetActive(true);
         cardGray.SetActive(false);
         cardMask.gameObject.SetActive(false);
+    }
+
+    void TransitionToCooling()
+    {
+        cardState = CardState.Cooling;
+        cdTimer = 0;
+        cardLight.SetActive(false);
+        cardGray.SetActive(true);
+        cardMask.gameObject.SetActive(true);
+    }
+
+    public void onClick()
+    {
+        if (SunManager.Instance.SunPoint < needSunPoint) return;
+        TransitionToCooling();
     }
 }
 
