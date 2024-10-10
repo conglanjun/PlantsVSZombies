@@ -17,7 +17,7 @@ public class Plant : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TransitionToDisable();
     }
 
     // Update is called once per frame
@@ -45,5 +45,11 @@ public class Plant : MonoBehaviour
     void EnableUpdate()
     {
 
+    }
+
+    void TransitionToDisable()
+    {
+        plantState = PlantState.Disable;
+        GetComponent<Animator>().enabled = false;
     }
 }

@@ -12,15 +12,17 @@ public class HandManager : MonoBehaviour
         Instance = this;
     }
 
-    public void AddPlant(PlantType plantType)
+    public bool AddPlant(PlantType plantType)
     {
+        if (currentPlant != null) return false;
         Plant plantPrefab = GetPlantPrefab(plantType);
         if (plantPrefab == null)
         {
             print("植物不存在！");
-            return;
+            return false;
         }
         currentPlant = GameObject.Instantiate(plantPrefab);
+        return true;
     }
 
     private Plant GetPlantPrefab(PlantType plantType)
@@ -54,5 +56,15 @@ public class HandManager : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPosition.z = 0;
         currentPlant.transform.position = mouseWorldPosition;
+    }
+
+    public void OnCellClick(Cell cell)
+    {
+        if (currentPlant == null) return;
+        bool isSuccess = cell.AddPlant(currentPlant);
+        if (isSuccess)
+        {
+            currentPlant = null;
+        }
     }
 }
