@@ -52,4 +52,10 @@ public class Plant : MonoBehaviour
         plantState = PlantState.Disable;
         GetComponent<Animator>().enabled = false;
     }
+
+    public void TransitionToEnable()
+    {
+        plantState = PlantState.Enable;
+        GetComponent<Animator>().enabled = true;
+    }
 }

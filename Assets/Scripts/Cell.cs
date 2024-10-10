@@ -29,6 +29,7 @@ public class Cell : MonoBehaviour
         if (currentPlant != null) return false;
         currentPlant = plant;
         currentPlant.transform.position = plant.transform.position;
+        plant.TransitionToEnable();
         return true;
     }
 }
