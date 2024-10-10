@@ -11,6 +11,9 @@ enum PlantState
 public class Plant : MonoBehaviour
 {
     PlantState plantState = PlantState.Disable;
+
+    public PlantType plantType= PlantType.SunFlower;
+
     // Start is called before the first frame update
     void Start()
     {
