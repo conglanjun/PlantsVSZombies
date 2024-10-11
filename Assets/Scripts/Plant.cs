@@ -58,4 +58,9 @@ public class Plant : MonoBehaviour
         plantState = PlantState.Enable;
         GetComponent<Animator>().enabled = true;
     }
+
+    public void ProduceSun()
+    {
+        print("Produce sun!");
+    }
 }
