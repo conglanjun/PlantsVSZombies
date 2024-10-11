@@ -42,7 +42,7 @@ public class Plant : MonoBehaviour
 
     }
 
-    void EnableUpdate()
+    protected virtual void EnableUpdate()
     {
 
     }
@@ -57,10 +57,5 @@ public class Plant : MonoBehaviour
     {
         plantState = PlantState.Enable;
         GetComponent<Animator>().enabled = true;
-    }
-
-    public void ProduceSun()
-    {
-        print("Produce sun!");
     }
 }
