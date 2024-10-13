@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -21,18 +22,46 @@ public class SunManager : MonoBehaviour
 
     public TextMeshProUGUI sunPointText;
     private Vector3 sunPointTextPosition;
+    public float produceTime = 2;
+    public float produceTimer;
+    public GameObject sunPrefab;
+
+    private bool isStartProduce = false;
 
     // Start is called before the first frame update
     void Start()
     {
         UpdateSunPointText();
         CalcSunPointTextPosition();
+        StartProduce();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (isStartProduce)
+        {
+            ProduceSun();
+        }
+    }
+
+    private void StartProduce()
+    {
+        isStartProduce = true;
+    }
+
+    void ProduceSun()
+    {
+        produceTimer += Time.deltaTime;
+        if (produceTimer > produceTime)
+        {
+            produceTimer = 0;
+            Vector3 position = new Vector3(UnityEngine.Random.Range(-5,6.5f),6.2f,-1);
+            GameObject go = GameObject.Instantiate(sunPrefab, position, Quaternion.identity);
+
+            position.y = UnityEngine.Random.Range(-4, 3f);
+            go.GetComponent<Sun>().LinearTo(position);
+        }
     }
 
     private void UpdateSunPointText()

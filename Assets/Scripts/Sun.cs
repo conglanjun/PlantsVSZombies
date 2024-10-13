@@ -7,6 +7,13 @@ public class Sun : MonoBehaviour
 {
     public float moveDuration = 1;
     public int point = 50;
+
+    public void LinearTo(Vector3 targetPos)
+    {
+        transform.DOMove(targetPos, moveDuration);
+
+    }
+
     public void JumpTo(Vector3 targetPos)
     {
         targetPos.z = -1;
