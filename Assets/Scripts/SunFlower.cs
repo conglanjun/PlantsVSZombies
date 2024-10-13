@@ -14,7 +14,7 @@ public class SunFlower : Plant
     public GameObject sunPrefab;
 
     public float jumpMinDistance = 0.3f;
-    public float jumpMaxDistance = 2;
+    public float jumpMaxDistance = 1.5f;
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -36,7 +36,7 @@ public class SunFlower : Plant
     public void ProduceSun()
     {
         GameObject go = GameObject.Instantiate(sunPrefab, transform.position, Quaternion.identity);
-
+        print(go.ToString());
         float distance = UnityEngine.Random.Range(jumpMinDistance, jumpMaxDistance);
         distance = UnityEngine.Random.Range(0,2) < 1? -distance: distance;
         Vector3 position = transform.position;
