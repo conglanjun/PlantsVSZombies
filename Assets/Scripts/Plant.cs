@@ -14,6 +14,8 @@ public class Plant : MonoBehaviour
 
     public PlantType plantType= PlantType.SunFlower;
 
+    public int HP = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,5 +61,20 @@ public class Plant : MonoBehaviour
         plantState = PlantState.Enable;
         GetComponent<Animator>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
+    }
+
+    public void TaskDamage(int damage)
+    {
+        this.HP -= damage;
+        if (this.HP <= 0)
+        {
+            Die();
+        }
+
+    }
+
+    void Die()
+    {
+        Destroy(this.gameObject);
     }
 }

@@ -11,6 +11,7 @@ public class PeaShooter : Plant
     public Transform shootPointTransform;
     public PeaBullet peaBulletPrefab;
     public float bulletSpeed = 5;
+    public int atkValue = 20;
 
 
     override protected void EnableUpdate()
@@ -29,5 +30,6 @@ public class PeaShooter : Plant
         print(peaBulletPrefab);
         PeaBullet pb = GameObject.Instantiate(peaBulletPrefab, shootPointTransform.position, Quaternion.identity);
         pb.SetSpeed(bulletSpeed);
+        pb.SetAtkValue(atkValue);
     }
 }

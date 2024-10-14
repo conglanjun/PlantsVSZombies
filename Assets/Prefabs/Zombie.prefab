@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2518823702060992785}
   m_Layer: 0
   m_Name: Zombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
+  atkValue: 30
+  atkDuration: 2
+  HP: 100
 --- !u!61 &461144566024197131
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +157,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.3698796, y: -0.117140085}
+  m_Offset: {x: 0.3698796, y: -0.49733186}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -165,7 +168,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9694092, y: 2.16572}
+  m_Size: {x: 0.9694092, y: 1.3252959}
   m_EdgeRadius: 0
 --- !u!50 &2518823702060992785
 Rigidbody2D:
