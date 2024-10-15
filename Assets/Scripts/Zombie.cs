@@ -28,6 +28,10 @@ public class Zombie : MonoBehaviour
     public float HP = 100;
     private float currentHP;
 
+    public GameObject zombieLostHeadPrefab;
+
+    private bool haveHead = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -97,8 +101,12 @@ public class Zombie : MonoBehaviour
         if (other.tag == "Plant")
         {
             anim.SetBool("IsAttacking", false);
-            zombieState = ZombieState.Move;
-            currentEatPlant = null;
+            print("OnTriggerExit2D");
+            if (currentHP > 0)
+            {
+                zombieState = ZombieState.Move;
+                currentEatPlant = null;
+            }
 
         }
     }
@@ -120,6 +128,12 @@ public class Zombie : MonoBehaviour
         }
         float hpPercent = currentHP*1f / HP;
         anim.SetFloat("HPPercent", hpPercent);
+        if (hpPercent < 0.5f && haveHead)
+        {
+            haveHead = false;
+            GameObject go = GameObject.Instantiate(zombieLostHeadPrefab, transform.position, Quaternion.identity);
+            Destroy(go, 2);
+        }
 
     }
 

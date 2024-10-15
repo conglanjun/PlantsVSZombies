@@ -125,6 +125,7 @@ MonoBehaviour:
   atkValue: 30
   atkDuration: 2
   HP: 100
+  zombieLostHeadPrefab: {fileID: 2230659347407846585, guid: 9547b072bd866d14a866f8270487eeae, type: 3}
 --- !u!61 &461144566024197131
 BoxCollider2D:
   m_ObjectHideFlags: 0
