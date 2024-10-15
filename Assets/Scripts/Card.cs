@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 enum CardState
 {
+    Disable,
     Cooling,
     WaitingSun,
     Ready
@@ -18,7 +19,7 @@ public enum PlantType
 
 public class Card : MonoBehaviour
 {
-    private CardState cardState = CardState.Cooling;
+    private CardState cardState = CardState.Disable;
 
     public PlantType plantType = PlantType.SunFlower;
 
@@ -114,6 +115,16 @@ public class Card : MonoBehaviour
             SunManager.Instance.SubSun(needSunPoint);
             TransitionToCooling();
         }
+    }
+
+    public void DisableCard()
+    {
+        cardState = CardState.Disable;
+    }
+
+    public void EnableCard()
+    {
+        TransitionToCooling();
     }
 }
 

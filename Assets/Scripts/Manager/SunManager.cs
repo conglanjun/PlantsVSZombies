@@ -33,7 +33,7 @@ public class SunManager : MonoBehaviour
     {
         UpdateSunPointText();
         CalcSunPointTextPosition();
-        StartProduce();
+        // StartProduce();
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class SunManager : MonoBehaviour
         }
     }
 
-    private void StartProduce()
+    public void StartProduce()
     {
         isStartProduce = true;
     }

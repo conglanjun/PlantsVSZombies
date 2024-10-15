@@ -22,7 +22,7 @@ public class ZombieManager : MonoBehaviour
     }
 
     private void Start() {
-        StartSpawn();
+        // StartSpawn();
     }
 
     public void StartSpawn()
