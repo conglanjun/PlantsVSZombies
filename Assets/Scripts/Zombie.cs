@@ -7,7 +7,8 @@ enum ZombieState
 {
     Move,
     Eat,
-    Die
+    Die,
+    Pause
 }
 
 
@@ -69,6 +70,7 @@ public class Zombie : MonoBehaviour
         atkTimer += Time.deltaTime;
         if (atkTimer >= atkDuration && currentEatPlant != null)
         {
+            AudioManager.Instance.PlayClip(Config.eat);
             currentEatPlant.TaskDamage(atkValue);
             atkTimer = 0;
         }
@@ -88,6 +90,9 @@ public class Zombie : MonoBehaviour
             anim.SetBool("IsAttacking", true);
             TransitionToEat();
             currentEatPlant = other.GetComponent<Plant>();
+        } else if (other.tag == "House")
+        {
+            GameManager.Instance.GameEndFail();
         }
     }
 
@@ -117,6 +122,12 @@ public class Zombie : MonoBehaviour
         atkTimer = 0;
     }
 
+    public void TransitionToPause()
+    {
+        zombieState = ZombieState.Pause;
+        anim.enabled = false;
+    }
+
     public void TaskDamage(int damage)
     {
         if (currentHP <= 0) return;
@@ -139,8 +150,10 @@ public class Zombie : MonoBehaviour
 
     private void Dead()
     {
+        if (zombieState == ZombieState.Die) return;
         zombieState = ZombieState.Die;
         GetComponent<Collider2D>().enabled = false;
+        ZombieManager.Instance.RemoveZombie(this);
 
         Destroy(gameObject, 2);
     }

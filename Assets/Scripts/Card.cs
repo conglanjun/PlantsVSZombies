@@ -107,6 +107,8 @@ public class Card : MonoBehaviour
 
     public void onClick()
     {
+        AudioManager.Instance.PlayClip(Config.btn_click, 1.0F);
+        if (cardState == CardState.Disable) return;
         if (SunManager.Instance.SunPoint < needSunPoint) return;
 
         bool isSuccess = HandManager.Instance.AddPlant(plantType);

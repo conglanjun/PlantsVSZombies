@@ -24,7 +24,7 @@ public class CardListUI : MonoBehaviour
 
 
     }
-    void DisableCardList()
+    public void DisableCardList()
     {
         foreach(Card card in cardList)
         {
